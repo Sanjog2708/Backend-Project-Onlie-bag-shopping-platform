@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ownerSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     fullname :{
         type:String,
         minlength:3,
@@ -8,10 +8,15 @@ const ownerSchema = mongoose.Schema({
     },
     email:String,
     password:String,
-    products:[],
+    cart:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"product", 
+        }
+    ],
+    orders:[],
     contact:Number,
     picture:String,
-    gstin:String,   
 })
 
-module.exports = mongoose.model("owner",ownerSchema);
+module.exports = mongoose.model("user",userSchema);
